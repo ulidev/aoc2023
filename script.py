@@ -1,7 +1,9 @@
 import os
 import requests
+from dotenv import load_dotenv
 import sys
 
+load_dotenv()
 
 def descargar_input(dia, sesion):
     url = f"https://adventofcode.com/2022/day/{dia}/input"
@@ -45,8 +47,10 @@ if __name__ == "__main__":
     dia = sys.argv[1]
     sesion = requests.Session()
 
+    session_cookie = os.getenv('SESSION_COOKIE')
+
     # Aquí agregas la cookie de sesión
     sesion.cookies.set('session',
-                       '53616c7465645f5f7fe382be6c2e13ace12f1d0d0c5e7ace52f1ef470b14ffe1066c40f1a3714daf2dcfe9e0da8cf117e07e384b5d77797d77852109d8ea0098')
+                       session_cookie) #Put your cookie here
 
     main(dia, sesion)
