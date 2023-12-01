@@ -6,7 +6,7 @@ import sys
 load_dotenv()
 
 def descargar_input(dia, sesion):
-    url = f"https://adventofcode.com/2022/day/{dia}/input"
+    url = f"https://adventofcode.com/2023/day/{dia}/input"
     respuesta = sesion.get(url)
     if respuesta.status_code == 200:
         return respuesta.text
