@@ -26,13 +26,24 @@ def part1(input_data):
 
     result = sum
 
-    # if result != -1:
-    #    print("The solution to part one is: " + str(result))
+    if result != -1:
+        print("The solution to part one is: " + str(result))
 
 
 def part2(input_data):
     result = -1
     # PART 2 SOLUTION
+    special_cases = {
+        "oneight": "18",
+        "twone": "21",
+        "threeight": "38",
+        "fiveight": "58",
+        "sevenine": "79",
+        "eightwo": "82",
+        "eighthree": "83",
+        "nineight": "98"
+    }
+
     text_to_digit = {
         "one": "1",
         "two": "2",
@@ -46,11 +57,13 @@ def part2(input_data):
     }
 
     def replace_nums(text):
+        for key, value in special_cases.items():
+            text = text.replace(key, value)
         for key, value in text_to_digit.items():
             text = text.replace(key, value)
         return text
 
-    parsed = row_input(input_data)[:5]
+    parsed = row_input(input_data)
     res = map(replace_nums, parsed)
 
     sum = 0
@@ -59,12 +72,10 @@ def part2(input_data):
         second_char = 0
         for c in row:
             if c.isdigit():
-                print(c)
                 first_char = c
                 break
         for c in reversed(row):
             if c.isdigit():
-                print(c)
                 second_char = c
                 break
 
